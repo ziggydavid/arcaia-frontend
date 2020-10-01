@@ -51,7 +51,7 @@ const FeaturesTiles = ({
   return (
     <section
       {...props}
-      className={outerClasses}
+      className={outerClasses} style={{ backgroundImage: require("../../assets/images/bg3.svg") }}
     >
       <div className="container">
         <div className={innerClasses}>

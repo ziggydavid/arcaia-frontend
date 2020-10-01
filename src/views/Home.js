@@ -12,9 +12,9 @@ const Home = () => {
     <>
       <div className="">
         <Hero className="illustration-section-01 background" />
-        <FeaturesTiles />
-        <FeaturesSplit invertMobile topDivider imageFill className="illustration-section-02" />
-        <Testimonial topDivider />
+        <FeaturesTiles className="background" />
+        <FeaturesSplit invertMobile topDivider imageFill className="illustration-section-02 background" />
+        <Testimonial topDivider className="background" />
         <Cta split />
       </div>
     </>

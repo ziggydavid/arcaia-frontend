@@ -7,13 +7,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 //import './App.css';
+import "./assets/vendor/nucleo/css/nucleo.css";
 import './assets/scss/style.scss';
 import './assets/scss/style.min.css'
 const history = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={history}>
-    <App className="illustration-section-bg" />
+    <App className="illustration-section-bg " />
   </Router>,
   document.getElementById('root')
 );

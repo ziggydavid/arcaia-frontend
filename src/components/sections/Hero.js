@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
-
 import Image from '../elements/Image';
 
 
@@ -100,7 +99,7 @@ const Hero = ({
                 </div>
                 <div className={
                   classNames(
-                    'split-item-image center-content-mobile reveal-from-bottom',
+                    'floating split-item-image center-content-mobile reveal-from-bottom',
                     imageFill && 'split-item-image-fill'
                   )}
                   data-reveal-container=".split-item">
