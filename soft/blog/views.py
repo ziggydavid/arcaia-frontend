@@ -24,15 +24,20 @@ class Contact(APIView):
         return Response({'success': "Failed"}, status=status.HTTP_400_BAD_REQUEST) 
 
 
-class PostArticle(CreateModelMixin):
-
+class PostArticle(GenericAPIView,CreateModelMixin):
+    serializer_class = PostSerializer
     query_set = Post.objects.all()
     def post(self,request, *args, **kwargs):
-        serializer_class = PostSerializer
+        
         return self.create(request, *args, **kwargs)
 
+
+class UpdatePost(GenericAPIView, CreateModelMixin):
+
+    serializer_class = UpdatePost
+
     def update(self, request, *args, **kwargs):
-        serializer_class = UpdatePost
+        
         partial = kwargs.pop('partial', False)
         post_id = request.query_params.get('post_id', None)
         instance = self.query_set.filter(id=post_id)
@@ -50,7 +55,7 @@ class PostArticle(CreateModelMixin):
         return Response(serializer.data)
 
     def put(self, request, *args, **kwargs):
-        
+
         return self.partial_update(request, *args, **kwargs)
 
 
