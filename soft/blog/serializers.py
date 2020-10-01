@@ -36,6 +36,11 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ('author', 'title', 'content')
 
 
+class UpdatePost(serializers.ModelSerializer):
+
+    class Meta:
+        model = Post
+        fields = ('title', 'content')
 
 class Login(LoginSerializer):
     username = serializers.CharField(required=False, allow_blank=True)

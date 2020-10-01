@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
    'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -138,9 +139,7 @@ REST_AUTH_SERIALIZERS = {
     
 }
 
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER':'blog.serializers.SignupSerializer'
-}
+
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'X-CSRFTOKEN',
 ]
