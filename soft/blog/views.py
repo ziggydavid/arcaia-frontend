@@ -3,6 +3,8 @@ from .serializers import *
 from rest_framework.views import APIView
 from django.core.mail import send_mail
 from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import CreateModelMixin, UpdateModelMixin
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 class Contact(APIView):
@@ -22,7 +24,34 @@ class Contact(APIView):
         return Response({'success': "Failed"}, status=status.HTTP_400_BAD_REQUEST) 
 
 
+class PostArticle(CreateModelMixin):
 
+    query_set = Post.objects.all()
+    def post(self,request, *args, **kwargs):
+        serializer_class = PostSerializer
+        return self.create(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        serializer_class = UpdatePost
+        partial = kwargs.pop('partial', False)
+        post_id = request.query_params.get('post_id', None)
+        instance = self.query_set.filter(id=post_id)
+        serializer = serializer_class(instance,data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        if instance:
+            serializer = serializer_class(instance,data=request.data, partial=partial)
+            serializer.is_valid(raise_exception=True)
+            self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+    def put(self, request, *args, **kwargs):
+        
+        return self.partial_update(request, *args, **kwargs)
 
 
 
