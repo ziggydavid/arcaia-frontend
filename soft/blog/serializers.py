@@ -16,7 +16,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model, authenticate
-
+from .models import *
 from django.contrib.auth.validators import ASCIIUsernameValidator
 
 
@@ -26,6 +26,15 @@ class Contact(serializers.Serializer):
     company = serializers.CharField(required=False, allow_blank=True)
     phone = serializers.CharField(required=False, allow_blank=True)
     message = serializers.CharField()
+
+
+
+class PostSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Post
+        fields = ('author', 'title', 'content')
+
 
 
 class Login(LoginSerializer):
