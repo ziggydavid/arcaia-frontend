@@ -30,10 +30,12 @@ class Contact(serializers.Serializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-
-    class Meta:
+    author = serializers.CharField(source='author.username', read_only=True)
+    created = serializers.DateTimeField(source='created_at', format="%Y-%m-%d", read_only=True)
+    updated = serializers.DateTimeField(source='updated_at', format="%Y-%m-%d", read_only=True)
+    class Meta: 
         model = Post
-        fields = ('author', 'title', 'content')
+        fields = ('title', 'content','author','created','updated')
 
 
 class UpdatePost(serializers.ModelSerializer):
