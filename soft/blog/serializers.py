@@ -4,7 +4,7 @@ from rest_framework.exceptions import APIException
 from django.utils.encoding import force_text
 from rest_framework.views import exception_handler
 import re
-
+from django.utils.html import strip_tags
 from rest_framework import serializers,exceptions
 from rest_auth.serializers import LoginSerializer
 from .models import *
@@ -33,9 +33,16 @@ class PostSerializer(serializers.ModelSerializer):
     author = serializers.CharField(source='author.username', read_only=True)
     created = serializers.DateTimeField(source='created_at', format="%Y-%m-%d", read_only=True)
     updated = serializers.DateTimeField(source='updated_at', format="%Y-%m-%d", read_only=True)
+    
+   
     class Meta: 
         model = Post
-        fields = ('title', 'content','author','created','updated')
+        fields = ('title', 'content','author','created','updated','slug')
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['preview'] = strip_tags(instance.content)
+        return data     
 
 
 class UpdatePost(serializers.ModelSerializer):
