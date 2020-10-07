@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .serializers import *
 from rest_framework.views import APIView
 from django.core.mail import send_mail
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
@@ -16,7 +16,7 @@ class Contact(APIView):
             name = data.get('name')
             sender = data.get('email')
             message = data.get('message')
-            company = data.get('comapny')
+            company = data.get('company')
             phone = data.get('phone')
             msg = "{0} with email {1} sent a message. \n\n{3}. \n\n phone: {4} \n\n company: {5}".format(name,sender,message,phone, company)
             send_mail("Enquiry", msg, 'care@deezisoft.com',['care@deezisoft.com'])
@@ -30,6 +30,20 @@ class PostArticle(GenericAPIView,CreateModelMixin):
     def post(self,request, *args, **kwargs):
         
         return self.create(request, *args, **kwargs)
+
+
+
+class PostList(ListAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+
+class PostDetail(ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        slug = self.request.query_params.get('slug', None)
+        queryset = Post.objects.filter(slug=slug)
+        return queryset
 
 
 class UpdatePost(GenericAPIView, CreateModelMixin):
