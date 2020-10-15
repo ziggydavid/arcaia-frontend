@@ -31,6 +31,7 @@ const Header = ({
 }) => {
 
   const [isActive, setIsactive] = useState(false);
+  const [active, setActive] = useState(false)
 
   const nav = useRef(null);
   const hamburger = useRef(null);
@@ -56,6 +57,7 @@ const Header = ({
     document.body.classList.remove('off-nav-is-active');
     nav.current && (nav.current.style.maxHeight = null);
     setIsactive(false);
+    setActive(true)
   }
 
   const keyPress = (e) => {
@@ -112,7 +114,20 @@ const Header = ({
                       navPosition && `header-nav-${navPosition}`
                     )}>
                     <li>
+                      <Link to="/" onClick={closeMenu} className={
+                        classNames(
+                          '',
+                          active && 'active'
+                        )}>Home</Link>
+                    </li>
+                    <li>
                       <Link to="/services" onClick={closeMenu}>Expertise</Link>
+                    </li>
+                    <li>
+                      <Link to="/blog" onClick={closeMenu}>Blog</Link>
+                    </li>
+                    <li>
+                      <Link to="/about" onClick={closeMenu}>Company</Link>
                     </li>
                   </ul>
                   {!hideSignin &&
@@ -120,7 +135,7 @@ const Header = ({
                       className="list-reset header-nav-right"
                     >
                       <li>
-                        <Link to="/contact-us" className="button button-primary button-wide-mobile button-sm" style={{ color: "#ffffff" }} onClick={closeMenu}>Get In Touch</Link>
+                        <Link to="/contact-us" className="button button-primary button-wide-mobile button-sm" style={{ color: "#ffffff" }} onClick={closeMenu}>Talk to a Specialist</Link>
                       </li>
                     </ul>}
                 </div>

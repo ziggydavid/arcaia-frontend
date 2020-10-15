@@ -5,6 +5,9 @@ import SectionHeader from './partials/SectionHeader';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
+import { Helmet } from "react-helmet";
+
+
 import {
     Card, CardText, CardBody,
     Row, Col
@@ -58,7 +61,7 @@ const Detail = ({
     const [post, setPost] = React.useState([])
 
     React.useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/blog-detail?slug=${slug}`)
+        axios.get(`/blog-detail?slug=${slug}`)
             .then(res => {
                 setPost(res.data)
             })
@@ -71,13 +74,28 @@ const Detail = ({
             {...props}
             className={outerClasses}
         >
+
+            {post.map(item => {
+                return (
+                    <Helmet>
+                        <title>Deezisoft - {item.title}</title>
+                        <meta property="og:type" content="website" />
+                        <meta property="og:title" content={item.title} />
+                        <meta property="og:description"
+                            content={ReactHtmlParser(item.preview.slice(0, 250))} />
+                        <meta property="og:image" content="https://deezisoft.com/static/media/blogpost.0254e425.jpg" />
+                        <meta property="og:url" content="https://deezisoft.com" />
+                    </Helmet>
+                )
+            })}
+
             <div className="container">
                 <div className={innerClasses}>
                     {post.map(item => {
                         return (
-
                             <div>
                                 <SectionHeader data={{ title: item.title }} className="center-content" />
+
                                 <div className={splitClasses}>
 
                                     <Row>
@@ -87,7 +105,7 @@ const Detail = ({
                                             <Card>
                                                 <CardBody>
 
-                                                    <CardText className="content-typo">{ReactHtmlParser(item.content)}</CardText>
+                                                    <CardText className="content-typo text-left" >{ReactHtmlParser(item.content)}</CardText>
 
                                                 </CardBody>
                                             </Card>

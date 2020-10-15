@@ -45,7 +45,7 @@ const FeaturesTiles = ({
 
   const sectionHeader = {
     title: 'Tech Solutions For Your Brand',
-    paragraph: 'We can help bring your ideas to life. we deliver end to end software engineering(web sites, web apps and mobile apps), Graphics and creative studio(Video Editing, Motion Graphics Design, Animation etc) an online marketing services through our knowledgeable professionals and we are proud of our reputation for excellence, client service and success.'
+    paragraph: 'We can help bring your ideas to life. we deliver end to end software engineering(web sites, web apps and mobile apps), Graphics designs and creative studio(Video Editing, Motion Graphics, Animation etc) and online marketing services through our knowledgeable professionals and we are proud of our reputation for excellence, client service and success.'
   };
 
   return (

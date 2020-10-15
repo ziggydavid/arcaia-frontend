@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
 import ButtonGroup from '../elements/ButtonGroup';
-import Button from '../elements/Button';
-
+import { Link } from "react-router-dom"
+import { Button } from "reactstrap"
 const propTypes = {
   ...SectionProps.types,
   split: PropTypes.bool
@@ -57,9 +57,9 @@ const Cta = ({
               Let's Discuss Your Project
               </h3>
           </div>
-          <div className="cta-action">
+          <div>
             <ButtonGroup>
-              <Button>Get in Touch</Button>
+              <Button><Link to="/contact-us">Get in Touch</Link></Button>
             </ButtonGroup>
           </div>
         </div>

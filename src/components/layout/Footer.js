@@ -33,6 +33,7 @@ const Footer = ({
       {...props}
       className={classes}
     >
+
       <div className="container">
         <div className={
           classNames(
@@ -45,7 +46,7 @@ const Footer = ({
           </div>
           <div className="footer-bottom space-between text-xxs invert-order-desktop">
             <FooterNav />
-            <div className="footer-copyright">Deezisoft © {new Date().getFullYear()}{" "}. All right reserved</div>
+            <div className="footer-copyright">Deezisoft © {new Date().getFullYear()}{" "}. All right reserved. </div>
           </div>
         </div>
       </div>
