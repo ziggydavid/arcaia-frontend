@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { SectionSplitProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
 import Image from '../elements/Image';
-import { Helmet } from 'react-helmet';
+
 
 const propTypes = {
     ...SectionSplitProps.types
@@ -59,18 +59,7 @@ const Services = ({
             {...props}
             className={outerClasses}
         >
-            <Helmet>
-                <meta property="og:image" content="https://deezisoft.com/static/deezilogo.png" />
-                <meta name="description" content="Software and Design solutions with Innovative and streamlined approach" />
-                <meta property="og:title" content="Software development | Graphics | Video Editing" />
-                <meta property="og:description"
-                    content="An organization of tech enthusiasts to provide technology based solutions. Ranging form websites/software development, mobile applications, Graphics designs, creatives, video editings, motion graphics etc. We take care of the whole process for you with over 400 successful developments. 100% Guaranteed" />
-                <meta property="og:url" content="https://deezisoft.com" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:description"
-                    content="An organization of tech enthusiasts to provide technology based solutions. Ranging form websites/software development, mobile applications, Graphics designs, creatives, video editings, motion graphics etc. We take care of the whole process for you with over 400 successful developments. 100% Guaranteed" />
-                <meta name="twitter:title" content="Software development | Graphics | Video Editing" />
-            </Helmet>
+
             <div className="container">
                 <div className={innerClasses}>
                     <SectionHeader data={sectionHeader} className="center-content" />

@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
+
 class User(AbstractUser):
     email_verified = models.BooleanField(default=False)
 

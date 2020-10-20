@@ -78,13 +78,17 @@ const Detail = ({
             {post.map(item => {
                 return (
                     <Helmet>
-                        <title>Deezisoft - {item.title}</title>
+                        <title>Deezisoft - IT Solutions</title>
                         <meta property="og:type" content="website" />
                         <meta property="og:title" content={item.title} />
                         <meta property="og:description"
                             content={ReactHtmlParser(item.preview.slice(0, 250))} />
                         <meta property="og:image" content="https://deezisoft.com/static/media/blogpost.0254e425.jpg" />
                         <meta property="og:url" content="https://deezisoft.com" />
+                        <meta name="description" content={ReactHtmlParser(item.preview.slice(0, 250))} />
+                        <meta name="twitter:card" content="summary_large_image" />
+                        <meta name="twitter:description" content={ReactHtmlParser(item.preview.slice(0, 250))} />
+                        <meta name="twitter:title" content={item.title} />
                     </Helmet>
                 )
             })}
